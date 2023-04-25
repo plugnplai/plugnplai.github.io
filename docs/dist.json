@@ -10,10 +10,22 @@
     }
   ],
   "paths": {
-    "/getUrls": {
+    "/getUrls/{pathOption}": {
       "get": {
         "summary": "Get URLs",
-        "description": "Retrieves a list of all URLs stored in the \"plugin\" collection.",
+        "description": "Retrieves a list of all URLs stored in the \"plugin\" collection based on the specified path option.",
+        "parameters": [
+          {
+            "name": "pathOption",
+            "in": "path",
+            "description": "Path option to filter the results. Possible values are 'working' and 'ChatGPT'.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["working", "ChatGPT"]
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "A list of URLs.",
