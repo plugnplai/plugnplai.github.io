@@ -53,7 +53,7 @@
     },
     "/getUrls/{filterOption}": {
       "get": {
-        "summary": "Get URLs with Filter Option",
+        "summary": "Filter URLs by verification method",
         "description": "Retrieves a list of all URLs stored in the \"plugin\" collection based on the specified path option.",
         "parameters": [
           {
@@ -106,7 +106,7 @@
     },
     "/getCategoryUrls/{category}": {
       "get": {
-        "summary": "Get Category URLs",
+        "summary": "Filter URLs by category",
         "description": "Retrieves a list of all URLs stored in the \"plugin\" collection based on the specified category.",
         "parameters": [
           {
