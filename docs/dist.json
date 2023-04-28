@@ -116,7 +116,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": ["shopping", "food", "productivity", "language", "messaging", "financial", "education", "code", "travel"]
+              "enum": ["shopping", "search", "productivity", "language", "messaging", "financial", "education", "code", "travel"]
             }
           }
         ],
