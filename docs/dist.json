@@ -104,6 +104,59 @@
         }
       }
     },
+    "/getCategoryUrls/{category}": {
+      "get": {
+        "summary": "Get Category URLs",
+        "description": "Retrieves a list of all URLs stored in the \"plugin\" collection based on the specified category.",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "description": "Category to filter the results. Possible values are 'shopping', 'food', 'productivity', 'language', 'messaging', 'financial', 'education', 'code', and 'travel'.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["shopping", "food", "productivity", "language", "messaging", "financial", "education", "code", "travel"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of URLs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "urls": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No URLs found in the database for the specified category.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },    
     "/getAllPluginsJson": {
       "get": {
         "summary": "Get All Plugins (JSON Data)",
