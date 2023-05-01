@@ -5,7 +5,7 @@
     "description": "Plug and Plai is a directory of AI plugins available at [plugnplai.com](https://plugnplai.com). It also includes an open-source library that aims to simplify the integration of AI plugins into open-source language models (LLMs). The library can be found on GitHub at [github.com/edreisMD/plugnplai](https://github.com/edreisMD/plugnplai).\n\nThis API allows LLMs to retrieve a list of plugins, with filtering options by working status and category.",
     "version": "1.0.0",
     "x-logo": {
-      "url": "https://static.wixstatic.com/media/8db8c5_6606d36fe32e450abdc345c53c447577~mv2.png",
+      "url": "https://static.wixstatic.com/media/8db8c5_64370c339e9d4edbbddd2043f548ffc9~mv2.png",
       "altText": "Plug and Plai logo"
     }
   },
