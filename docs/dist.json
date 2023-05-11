@@ -164,7 +164,7 @@
     },
     "/categoryNames": {
       "get": {
-        "summary": "Get All Categories",
+        "summary": "Get Names of Categories",
         "description": "Retrieves a list of all unique categories in the \"plugins\" collection.",
         "responses": {
           "200": {
