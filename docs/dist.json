@@ -121,7 +121,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": ["shopping", "search", "productivity", "language", "messaging", "financial", "education", "code", "travel"]
+              "enum": ["weather", "pet", "travel", "marketing", "productivity", "dev", "sales", "social", "search", "utility", "financial", "services", "video", "messaging", "food", "image", "code", "shopping", "education", "legal"]
             }
           }
         ],
@@ -146,6 +146,47 @@
           },
           "404": {
             "description": "No URLs found in the database for the specified category.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categoryNames": {
+      "get": {
+        "summary": "Get All Categories",
+        "description": "Retrieves a list of all unique categories in the \"plugins\" collection.",
+        "responses": {
+          "200": {
+            "description": "A list of categories.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No categories found in the database.",
             "content": {
               "application/json": {
                 "schema": {
