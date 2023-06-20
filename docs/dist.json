@@ -23,11 +23,11 @@
           {
             "name": "path",
             "in": "path",
-            "description": "Path option to select the information to be returned. Possible values are 'urls', 'manifestUrls', 'manifests', 'info', and 'names'. Default value is 'urls'.",
+            "description": "Path option to select the information to be returned. Possible values are 'urls', 'names' (returning name_for_model), 'manifests', 'manifestUrls', 'info'. Default value is 'urls'.",
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["urls", "manifestUrls", "manifests", "info", "names"]
+              "enum": ["urls", "names", "info", "manifests", "manifestUrls"]
             }
           },
           {
