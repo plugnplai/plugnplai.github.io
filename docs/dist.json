@@ -15,254 +15,62 @@
     }
   ],
   "paths": {
-    "/getUrls": {
+    "/plugins": {
       "get": {
-        "summary": "Get URLs",
-        "description": "Retrieves a list of all URLs stored in the \"plugin\" collection. Optionally filter the results based on the specified query parameter.",
-        "responses": {
-          "200": {
-            "description": "A list of URLs.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "urls": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "No URLs found in the database.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/getUrls/{filterOption}": {
-      "get": {
-        "summary": "Filter URLs by verification method",
-        "description": "Retrieves a list of all URLs stored in the \"plugin\" collection based on the specified path option.",
+        "summary": "Get plugins",
+        "description": "Retrieves a list of plugins stored in the \"plugin\" collection based on the specified path or query parameter.",
         "parameters": [
           {
-            "name": "filterOption",
+            "name": "path",
             "in": "path",
-            "description": "Path option to filter the results. Possible values are 'working' and 'ChatGPT'.",
+            "description": "Path option to select the information to be returned. Possible values are 'urls', 'manifestUrls', 'manifests', 'info', and 'names'. Default value is 'urls'.",
             "required": false,
             "schema": {
               "type": "string",
-              "enum": ["working", "ChatGPT"]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A list of URLs.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "urls": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
+              "enum": ["urls", "manifestUrls", "manifests", "info", "names"]
             }
           },
-          "404": {
-            "description": "No URLs found in the database.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/getCategoryUrls/{category}": {
-      "get": {
-        "summary": "Filter URLs by category",
-        "description": "Retrieves a list of all URLs stored in the \"plugin\" collection based on the specified category.",
-        "parameters": [
           {
-            "name": "category",
-            "in": "path",
-            "description": "Category to filter the results. Possible values are 'shopping', 'food', 'productivity', 'language', 'messaging', 'financial', 'education', 'code', and 'travel'.",
-            "required": true,
+            "name": "query",
+            "in": "query",
+            "description": "Query parameters to filter the results. Possible keys are 'name', 'name_for_human', 'name_for_model', 'url', 'verified_for', 'auth_type', and 'category'.",
+            "required": false,
+            "style": "form",
             "schema": {
-              "type": "string",
-              "enum": ["weather", "pet", "travel", "marketing", "productivity", "dev", "sales", "social", "search", "utility", "financial", "services", "video", "messaging", "food", "image", "code", "shopping", "education", "legal"]
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "A list of URLs.",
+            "description": "A list of plugins.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "urls": {
-                      "type": "array",
-                      "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "url": {
                         "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "No URLs found in the database for the specified category.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/categoryNames": {
-      "get": {
-        "summary": "Get Names of Categories",
-        "description": "Retrieves a list of all unique categories in the \"plugins\" collection.",
-        "responses": {
-          "200": {
-            "description": "A list of categories.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "categories": {
-                      "type": "array",
-                      "items": {
+                      },
+                      "manifest": {
                         "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "No categories found in the database.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },    
-    "/getAllPluginsJson": {
-      "get": {
-        "summary": "Get All Plugins (JSON Data)",
-        "description": "Retrieves all plugin data stored in the \"plugin\" collection, including all relevant fields.",
-        "responses": {
-          "200": {
-            "description": "A list of plugins with all relevant fields.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "plugins": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "schemaVersion": {
-                            "type": "string"
-                          },
-                          "nameForModel": {
-                            "type": "string"
-                          },
-                          "nameForHuman": {
-                            "type": "string"
-                          },
-                          "descriptionForHuman": {
-                            "type": "string"
-                          },
-                          "descriptionForModel": {
-                            "type": "string"
-                          },
-                          "apiType": {
-                            "type": "string"
-                          },
-                          "apiUrl": {
-                            "type": "string"
-                          },
-                          "hasUserAuthentication": {
-                            "type": "boolean"
-                          },
-                          "authType": {
-                            "type": "string"
-                          },
-                          "logoUrl": {
-                            "type": "string"
-                          },
-                          "contactEmail": {
-                            "type": "string"
-                          },
-                          "legalInfoUrl": {
-                            "type": "string"
-                          },
-                          "upCount": {
-                            "type": "integer"
-                          },
-                          "aiPluginJsonData": {
-                            "type": "object"
-                          }
+                      },
+                      "category": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
                         }
+                      },
+                      "verified_for": {
+                        "type": "string"
+                      },
+                      "upCount": {
+                        "type": "integer"
                       }
                     }
                   }
@@ -287,7 +95,89 @@
           }
         }
       }
-    }
+    },
+    "/retrieve": {
+      "get": {
+        "summary": "Retrieve top plugins",
+        "description": "This endpoint retrieves the top plugins based on the provided text query. The text query should be included as a parameter in the request.",
+        "parameters": [
+          {
+            "name": "text",
+            "in": "query",
+            "description": "Text query to find the top plugins. This query parameter is required.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation. Returns a list of top plugins.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "type": "string"
+                      },
+                      "manifest": {
+                        "type": "string"
+                      },
+                      "category": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "verified_for": {
+                        "type": "string"
+                      },
+                      "upCount": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request. Expecting a 'text' query parameter.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error. Failed to get top plugins.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
   },
   "components": {}
 }
